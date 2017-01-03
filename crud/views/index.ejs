@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="/css/bin/materialize.css">
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body ng-app="app" ng-controller="CrudController">
+
+  <nav class="grey darken-4">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">CReate Update Delete</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+  <h4>Formulário de Contatos</h4>
+  <h5><i>Cadastre, altere e delete seus contatos</i></h5>
+
+    <div class="row">
+      <form>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="nome" ng-model="contato.nome" type="text" class="validate">
+            <label for="name">Nome</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="email" ng-model="contato.email" type="text" class="validate">
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="telefone" ng-model="contato.telefone" type="text" class="validate">
+            <label for="telefone">Telefone</label>
+          </div>
+        </div>
+        <div class="row">
+          <button type="submit" class="waves-effect waves-light btn" ng-click="add(contato)">Cadastrar</button>
+          <button type="submit" class="waves-effect waves-light btn" ng-click="edit(contato)" ng-show="libre">Editar</button>
+        </div>
+      </form>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="d in data | orderBy:'nome'" ng-init="cont = cont + 1">
+          <td>{{$index + 1}}</td>
+          <td>{{d.nome}}</td>
+          <td>{{d.email}}</td>
+          <td>{{d.telefone}}</td>
+          <td>
+            <a ng-click="toEdit(d)" class="btn waves-effect waves-light yellow darken-1"><i class="material-icons">mode_edit</i></a>
+            <a href="/del/{{d._id}}" class="btn waves-effect waves-light red darken-1"><i class="material-icons">delete</i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="/jquery/jquery.min.js"></script>
+  <script src="/css/bin/materialize.js"></script>
+  <script src="/angular/angular/angular.min.js"></script>
+  <script src="/angular/angular-route/angular-route.min.js"></script>
+  <script src="/scripts/app.js"></script>
+  <script>
+    $(document).ready(function() {
+      Materialize.updateTextFields();
+    });
+  </script>
+</body>
+</html>
