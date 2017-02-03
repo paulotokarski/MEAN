@@ -1,0 +1,58 @@
+<div class="container">  
+  <div class="text-center">  
+    <h1>
+      <strong>MEAN TODOs App</strong>
+    </h1>
+    <p>Aplicação MEAN (MongoDB, Express, Angular e NodeJS)</p>
+  </div>
+
+  <br><br>
+
+  <!-- Input -->
+  <div class="row container">
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="todoText" name="todoText" (keyup.enter)="addTodo($event, todoText)" placeholder="Adicione sua tarefa">
+      <span class="input-group-btn">
+        <button class="btn btn-success" type="button" (click)="addTodo($event, todoText)">
+          <span class="glyphicon glyphicon-pushpin"></span>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <br><br>
+
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let todo of todos; let i = index">
+      
+      <div class="row">
+        <!-- Status -->
+        <div class="col-md-1">
+          <button type="button" class="btn btn-default" (click)="statusTodo($event, todo, i)">
+            <span class="glyphicon glyphicon-star" *ngIf="todo.isCompleted"></span>
+            <span class="glyphicon glyphicon-star-empty" *ngIf="!todo.isCompleted"></span>
+          </button>
+        </div>
+        <!-- Trefa  -->
+        <div class="col-md-9">
+          <!-- Texto  -->
+          <h5 *ngIf="!editable[i]"><b>{{todo.text}}</b></h5>
+          <!-- Editar -->
+          <input *ngIf="editable[i]" type="text" class="form-control" [(ngModel)]="todo.text" (keyup.enter)="updateTodo($event, todo, i)">
+        </div>
+        <!-- Ações  -->
+        <div class="col-md-2">
+          <!-- Editar -->
+          <button type="button" class="btn btn-info" (click)="editable[i] = !editable[i]">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+          <!-- Deletar -->
+          <button type="button" class="btn btn-danger" (click)="delTodo($event, todo)">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </div>
+      </div>
+        
+    </li>
+  </ul>
+</div>
