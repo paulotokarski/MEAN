@@ -3,7 +3,6 @@ var db;
 
 module.exports = function() {
   if(!db)
-    db = mongoose.connect('mongodb://localhost:27017/contatos');
-
+    db = mongoose.connect('mongodb://<HOST>/<MYDB>');
   return db;
 }
