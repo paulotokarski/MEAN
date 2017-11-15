@@ -1,2 +1,2 @@
-# Node
-Aplicações com NodeJS
+# MEAN
+Aplicações MEAN (MongoDB, Express, AngularJS/Angular, NodeJS)
